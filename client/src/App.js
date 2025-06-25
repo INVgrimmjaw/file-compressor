@@ -134,25 +134,29 @@ const response = await fetch(`https://file-compressor-kzbl.onrender.com/${endpoi
 
         setMessage('✅ Compression complete!');
       } else {
-        const blob = await response.blob();
-        const filename = response.headers
-          .get('Content-Disposition')
-          ?.match(/filename="?([^"]+)"?/)?.[1] || 'decompressed-output';
+  const decompressionStart = performance.now();
 
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = filename;
-        a.click();
+  const blob = await response.blob();
+  const filename = response.headers
+    .get('Content-Disposition')
+    ?.match(/filename="?([^"]+)"?/)?.[1] || 'decompressed-output';
 
-        const decompressionTime = Math.round(performance.now());
-        setStats({
-          type: 'decompression',
-          decompressedSize: (blob.size / 1024).toFixed(2),
-          processingTime: decompressionTime,
-        });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
 
-        setMessage('✅ Decompression complete!');
-      }
+  const decompressionEnd = performance.now();
+  const decompressionTime = Math.round(decompressionEnd - decompressionStart);
+
+  setStats({
+    type: 'decompression',
+    decompressedSize: (blob.size / 1024).toFixed(2),
+    processingTime: decompressionTime,
+  });
+
+  setMessage('✅ Decompression complete!');
+}
     } catch (err) {
       console.error(err);
       setMessage('❌ Server error.');
