@@ -116,6 +116,7 @@ The frontend app will launch in your browser at http://localhost:3000
 - Upload files on the frontend interface.  
 - Choose compression/decompression algorithms.  
 - Process files and download results.
+- When decompressing make sure to use the same algorithm which was used for compressing.
 
 ---
 
