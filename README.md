@@ -39,6 +39,8 @@ Data Compression Portal is a web-based application that allows users to compress
 ### Prerequisites  
 - Make sure you have **Node.js** (v14 or later) installed on your machine.  
 - You also need **npm** (comes with Node.js) or **yarn** as your package manager.
+- backend code in index.js inside server folder.
+- front code in app.js in src inside client folder.
 
 ---
 
@@ -60,7 +62,7 @@ fetch(`http://localhost:5000/${endpoint}`, { ... })
 ---
 
 ### Step 2: Install Backend Dependencies  
-Navigate to the backend folder (or root if backend is in root):
+Navigate to the backend folder (server):
 
 \`\`\`
 cd server
